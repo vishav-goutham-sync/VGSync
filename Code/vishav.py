@@ -13,7 +13,7 @@ dataset=load_from_folder()
 s,apd,arp=ECG_segment(dataset,channel_num=0)
 
 #Feature Extraction
-signal=apd[0]
+signal=apd[9]
 fs=500
 ts,filtered,rpeaks,templates_ts, templates, heart_rate_ts, heart_rate=ecg(signal=signal, sampling_rate=fs, show=True)
 
