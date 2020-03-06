@@ -1,4 +1,4 @@
-#LOAD challenge data by Vishav (5 march 2020)
+#LOAD challenge data
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,7 +13,7 @@ from ecgdetectors import Detectors
 fs=500
 
 
-path='data'
+path='C:/Users/Vishavpreet/Downloads/PhysioNetChallenge2020_Training_CPSC/Training_WFDB'
 
 def get_records():
     """ Get paths for data in directory """  
