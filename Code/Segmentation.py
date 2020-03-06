@@ -44,6 +44,7 @@ fs=500
 def ECG_segment(dataset, channel_num=0):
     segments_per_ECG=[]
     all_preprocessed_datas=[]
+    all_r_peaks=[]
     for rec in dataset:
         ecg_all_channel=rec[0]
         ecg_channel_1=ecg_all_channel[:,channel_num]
@@ -54,6 +55,7 @@ def ECG_segment(dataset, channel_num=0):
         detectors=Detectors(fs)
         #Peak Detection
         r_peaks=detectors.engzee_detector(pre_precocessed_data)
+        all_r_peaks.append(r_peaks)
         #Peak Segmentation
         all_segments=[]
         count=0
@@ -77,7 +79,7 @@ def ECG_segment(dataset, channel_num=0):
         all_preprocessed_datas.append(pre_precocessed_data)
         segments_per_ECG.append(all_segments)
         
-    return segments_per_ECG,all_preprocessed_datas
+    return segments_per_ECG,all_preprocessed_datas,all_r_peaks
 
 #Example
 #dataset=load_from_folder()
