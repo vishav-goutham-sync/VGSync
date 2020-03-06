@@ -37,6 +37,7 @@ def make_dataset(records):
 
 def ecg_features(all_segments):
     f_vec=[]
+    corr=[]
     #correlate    
     for i in range(len(all_segments)-1):
         d1=all_segments[i]
@@ -69,9 +70,11 @@ def ECG_segment_and_features(channel_num=0):
     features=[]
     for rec in dataset:
         ecg_all_channel=rec[0]
-        ecg_channel_1=ecg_all_channel[:,0]
+        ecg_channel_1=ecg_all_channel[:,channel_num]
         detectors=Detectors(fs)
+        #Peak Detection
         r_peaks=detectors.engzee_detector(ecg_channel_1)
+        #Peak Segmentation
         all_segments=[]
         count=0
         for i in range(len(r_peaks)):
@@ -96,8 +99,7 @@ def ECG_segment_and_features(channel_num=0):
         
     return segments_per_ECG, features
 
-s,f=ECG_segment_and_features(0)
-
+s,f=ECG_segment_and_features(2)
 
 #read one channel ECG
 #rec_num_1=dataset[0]
