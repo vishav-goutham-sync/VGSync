@@ -27,5 +27,4 @@ def load_12ECG_model():
     # load the model from disk 
     filename='finalized_model.sav'
     loaded_model = joblib.load(filename)
-
     return loaded_model

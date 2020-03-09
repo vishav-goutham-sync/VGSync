@@ -47,11 +47,25 @@ def feat_array(ht,hf):
 #Feature Extraction
 feature_array=[]    
 sampling_rate = 300
-for i in range(len(arp)):
-    x_rpeaks=arp[i]
-    x_rpeaks=np.asarray(x_rpeaks)
-    hrv_t = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['time'])
-    hrv_f = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['frequency'])
-    #hrv_nl = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['nonlinear'])
-    temp_fa=feat_array(hrv_t,hrv_f)
-    feature_array.append(temp_fa)
+#for i in range(len(arp)):
+#    x_rpeaks=arp[i]
+#    hrv_t = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['time'])
+#    hrv_f = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['frequency'])
+##    hrv_nl = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['nonlinear'])
+#    temp_fa=feat_array(hrv_t,hrv_f)
+#    feature_array.append(temp_fa)
+
+from hrvanalysis import get_csi_cvi_features
+rr_intervals_list=arp[0]
+time_domain_features=get_csi_cvi_features(rr_intervals_list)
+
+from hrvanalysis import plot_psd,plot_distrib
+# nn_intervals_list contains integer values of NN Interval
+plot_psd(rr_intervals_list, method="welch")
+plot_distrib(rr_intervals_list, bin_length=8)
+
+
+from hrvanalysis import plot_poincare
+
+plot_poincare(rr_intervals_list)
+plot_poincare(rr_intervals_list, plot_sd_features=True)

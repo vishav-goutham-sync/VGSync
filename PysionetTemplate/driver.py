@@ -57,9 +57,10 @@ if __name__ == '__main__':
     if len(sys.argv) != 3:
         raise Exception('Include the input and output directories as arguments, e.g., python driver.py input output.')
 
-    input_directory = sys.argv[1]
-    output_directory = sys.argv[2]
-
+#    input_directory = sys.argv[1]
+#    output_directory = sys.argv[2]
+    output_directory='C:/Users/Vishavpreet/Desktop/out'
+    input_directory ='C:/Users/Vishavpreet/Downloads/PhysioNetChallenge2020_Training_CPSC/Training_WFDB'
     # Find files.
     input_files = []
     for f in os.listdir(input_directory):
@@ -86,6 +87,5 @@ if __name__ == '__main__':
         current_label, current_score = run_12ECG_classifier(data,header_data,classes, model)
         # Save results.
         save_challenge_predictions(output_directory,f,current_score,current_label,classes)
-
-
     print('Done.')
+
