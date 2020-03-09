@@ -54,7 +54,7 @@ def ECG_segment(dataset, channel_num=0):
         
         detectors=Detectors(fs)
         #Peak Detection
-        r_peaks=detectors.engzee_detector(pre_precocessed_data)
+        r_peaks=detectors.pan_tompkins_detector(pre_precocessed_data)
         all_r_peaks.append(r_peaks)
         #Peak Segmentation
         all_segments=[]

@@ -46,12 +46,12 @@ def feat_array(ht,hf):
 
 #Feature Extraction
 feature_array=[]    
-sampling_rate = 400
+sampling_rate = 300
 for i in range(len(arp)):
     x_rpeaks=arp[i]
+    x_rpeaks=np.asarray(x_rpeaks)
     hrv_t = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['time'])
     hrv_f = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['frequency'])
     #hrv_nl = nk.bio_ecg.ecg_hrv(rpeaks=x_rpeaks, sampling_rate=sampling_rate, hrv_features=['nonlinear'])
     temp_fa=feat_array(hrv_t,hrv_f)
     feature_array.append(temp_fa)
-

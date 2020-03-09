@@ -13,8 +13,8 @@ from ecgdetectors import Detectors
 fs=500
 
 
-path='C:/Users/Vishavpreet/Downloads/PhysioNetChallenge2020_Training_CPSC/Training_WFDB'
-
+#path='C:/Users/Vishavpreet/Downloads/PhysioNetChallenge2020_Training_CPSC/Training_WFDB/'
+path='data'
 def get_records():
     """ Get paths for data in directory """  
     os.path.dirname(path)
@@ -34,3 +34,24 @@ def load_from_folder():
     records=get_records()
     dataset=make_dataset(records)
     return dataset
+
+def read_annotations():
+    annotations=[]
+    records=get_records()
+    dataset=make_dataset(records)
+
+    for i in range(len(dataset)):
+        data_desc=dataset[i][1]
+        comments=data_desc['comments']
+    
+    
+        if(comments[2].find('Dx:')==0):
+            annotation=comments[2]
+        else:
+            for cmnt in comments:
+                if(cmnt.find('Dx')==0):
+                    annotation=cmnt
+    
+          
+        annotations.append(annotation.replace('Dx:','').replace(' ',''))
+    return annotations
