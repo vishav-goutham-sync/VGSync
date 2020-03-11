@@ -22,7 +22,7 @@ def feat_array(ht,hf):
     fv.append(ht['madNN'])
     fv.append(ht['mcvNN'])
     fv.append(ht['meanNN'])
-    fv.append(ht['medianNN'])
+    fv.append(ht['medianNN']) 
     fv.append(ht['n_Artifacts'])
     fv.append(ht['pNN20'])
     fv.append(ht['pNN50'])
